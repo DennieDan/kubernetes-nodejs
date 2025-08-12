@@ -38,4 +38,13 @@ jobs:
           git add deployments/deployment.yml
           git commit -m "Updating newer image to $GITHUB_BRANCH"
           git pull --rebase
+
+      - name: Set up Git authentication
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/DennieDan/kubernetes-nodejs.git
+
+      - name: Push changes
+        run: |
           git push origin master
