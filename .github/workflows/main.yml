@@ -8,6 +8,8 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout code
@@ -32,10 +34,9 @@ jobs:
 
       - name: Update manifest file
         run: |
-          git config user.name "$GITHUB_ACTOR"
-          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-          git remote add upstream https://github.com/DennieDan/kubernetes-nodejs.git
-          git remote set-url upstream https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/DennieDan/kubernetes-nodejs.git
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git remote add upstream https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/DennieDan/kubernetes-nodejs.git
           yq eval '.spec.template.spec.containers[0].image = "missdoo/kubernetes:${{ env.GITHUB_BRANCH }}"' -i deployments/deployment.yml
           git add deployments/deployment.yml
           git commit -m "Updating newer image to $GITHUB_BRANCH"
