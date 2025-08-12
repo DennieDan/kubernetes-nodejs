@@ -39,4 +39,4 @@ jobs:
           git add deployments/deployment.yml
           git commit -m "Updating newer image to $GITHUB_BRANCH"
           git pull --rebase upstream master
-          git push origin master
+          git push upstream master
