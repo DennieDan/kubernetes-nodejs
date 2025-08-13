@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: my-app-container
-          image: missdoo/kubernetes:master-a39be70710655f2a3911f97b038e5f19c1c4b8d2
+          image: missdoo/kubernetes:master-33c21bab452ba4006ab8a5210826af5651f16941
           imagePullPolicy: Always
           ports:
             - containerPort: 8000
