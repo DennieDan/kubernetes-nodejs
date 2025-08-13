@@ -3,4 +3,4 @@ kind: Namespace
 metadata:
   name: my-deployment
   labels:
-    app: nodejs-akash-app
+    app: kubernetes-nodejs
